@@ -22,12 +22,26 @@ class LinksController < ApplicationController
 	  end
 	end
 
-	def redirect
-	  @link = Link.find_by(:slug => params[:slug])
-	  if @link
-	    redirect_to "http://#{@link.target_url}"
+	def show
+	  @link = Link.find_by(:id => params[:id])
+
+	end
+
+	def edit
+	  @link = Link.find_by(:id => params[:id])
+
+	end
+
+	def update
+	  @link = Link.find_by(:id => params[:id])
+
+	  if @link.update(params[:link])
+	  	@link.strip_http!
+	    flash[:success] = "Link updated."
+	  	redirect_to link_path(@link.id)  
+	  	########    ^^^ "/links/#{@link.id}"
 	  else
-	  	raise ActionController::RoutingError.new('Not Found')
+	  	render 'edit'
 	  end
 	end
 
