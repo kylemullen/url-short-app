@@ -11,6 +11,7 @@ class LinksController < ApplicationController
 
 	def create
 	  @link = current_user.links.new(params[:link])
+	  @link.strip_http!
 
 	  if @link.save
 	  	flash[:success] = "Link Created."
@@ -18,6 +19,15 @@ class LinksController < ApplicationController
 	  else
 	  	render 'new'
 
+	  end
+	end
+
+	def redirect
+	  @link = Link.find_by(:slug => params[:slug])
+	  if @link
+	    redirect_to "http://#{@link.target_url}"
+	  else
+	  	raise ActionController::RoutingError.new('Not Found')
 	  end
 	end
 

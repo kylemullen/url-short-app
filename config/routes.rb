@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   #resources :links
   get 'links' => 'links#index', as: :links
   get 'links/new' => 'links#new', as: :new_link
-  post 'links/' => 'links#create' 
+  post 'links' => 'links#create' 
+
+  get '/:slug' => 'links#redirect'
 
 
 
