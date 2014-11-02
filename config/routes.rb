@@ -10,6 +10,15 @@ Rails.application.routes.draw do
      root 'devise/registrations#new', as: :unauthenticated_root
    end
  end
+
+  #resources :links
+  get 'links' => 'links#index', as: :links
+  get 'links/new' => 'links#new', as: :new_link
+  post 'links/' => 'links#create' 
+
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
