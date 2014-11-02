@@ -1,1 +1,20 @@
 <h1>Your Links</h1>
+
+<table class="table">
+  <tr>
+  	<th>Slug</th>
+  	<th>Target URL</th>
+  	<th>Created At</th>
+  </tr>
+  <% @links.each do |link| %>
+  	<tr>
+  	  <td><% link.slug   %></td>
+  	  <td><% link.target_url   %></td>
+  	  <td><% link.created_at  %></td>
+  	 </tr>
+
+  
+  <% end %>
+
+
+</table>
